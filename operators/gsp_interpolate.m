@@ -51,7 +51,8 @@ if ~isfield(param, 'regularize_epsilon'), param.regularize_epsilon=.005; end
 % Compute coefficients alpha for each of the Green's functions translated
 % to center vertices in V_1
 elim_inds=setdiff(1:G.N,keep_inds);
-regularized_L= G.L+param.regularize_epsilon*eye(G.N);
+%regularized_L= G.L+param.regularize_epsilon*eye(G.N);
+regularized_L= G.L+param.regularize_epsilon*speye(G.N);
 alpha_upsampled=zeros(G.N,size(f_subsampled,2));
 alpha_upsampled(keep_inds,:) = ...
     regularized_L(keep_inds,keep_inds) * f_subsampled ...
